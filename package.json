@@ -1,0 +1,31 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaloJuan/weather-app.git"
+  },
+  "author": "Juan Salomon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaloJuan/weather-app/issues"
+  },
+  "homepage": "https://github.com/SaloJuan/weather-app#readme",
+  "dependencies": {
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2"
+  }
+}

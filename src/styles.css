@@ -1,0 +1,47 @@
+.main-container,
+.main-info,
+.actual-day-forecast,
+.ten-day-forecast{
+    border: red solid 1px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.main-container{   
+
+    padding:40px;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+    "main-info"
+    "actual-day-fcast"
+    "ten-day-fcast";
+
+}
+
+
+.main-info *{
+    grid-area: main-info;
+    border-radius: 10px;
+    
+
+}
+.actual-day-forecast{
+    grid-area: actual-day-fcast;
+    border-radius: 10px;
+
+}
+.ten-day-forecast{
+    grid-area: ten-day-fcast;
+    border-radius: 10px;
+}
+
+.main-container{
+
+    justify-content: center;
+    align-items: center;
+}
+
+
