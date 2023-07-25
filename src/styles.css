@@ -1,3 +1,5 @@
+
+
 .main-container,
 .main-info,
 .actual-day-forecast,
@@ -11,29 +13,50 @@
 .main-container{   
 
     padding:40px;
+    background-image: url(./assets/sunny-day.jpg);
+    
     display:grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-areas:
+    "location-finder"
     "main-info"
     "actual-day-fcast"
     "ten-day-fcast";
 
 }
 
+.location-finder{
+    background-color: white;
+    grid-area: location-finder;
+    
+}
 
-.main-info *{
+.city-finder-bar{
+    
+    width: 96%;
+    border: solid 1px #f1dada;
+
+}
+
+
+.main-info {
+
+    background: #f0c9c9 ;
+    
     grid-area: main-info;
     border-radius: 10px;
     
 
 }
 .actual-day-forecast{
+    background: #f0c9c9;
     grid-area: actual-day-fcast;
     border-radius: 10px;
 
 }
 .ten-day-forecast{
+    background: #f0c9c9;
     grid-area: ten-day-fcast;
     border-radius: 10px;
 }

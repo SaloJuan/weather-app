@@ -1,0 +1,33 @@
+Todo texo blanco en elementos transparentes sobre el fondo del cielo soleado o nublado o lluvioso
+
+1) main-info:
+-Al abrir la app te deberia solicitar tu locacion
+-esa locacion se guarda en una variable
+-se hace fetch a la api para conseguir la location key
+-esa key luego se usa inmediatamene para traer la info desde la api de forecast
+
+
+
+2)actual-day-forecast
+- hacer una linea con 5 horarios posteriores al actual. ESto hacerlo con alguna fn onda new Date() que diga que hora es right now o ver si en la misma api te trae eso.
+-Esos 5 horarios deberian mosrtar el estado general previsto y la temperatura que se anuncia
+
+3)10-day-fcast:
+-Para cada uno de los 10 dias posteriorres al de consulta,s e debe traer el clima general y la temperatura maxima y minima
+ 
+
+
+
+con esto puedo laburar un observer para cambiar el tamaño del textarea de busqueda
+
+let barraBusqueda = document.querySelector('.city-finder-bar');
+let divBarraBusqueda = document.querySelector('.location-finder');
+
+ divBarraBusqueda.addEventListener('click', (ev) =>{
+
+    let width = ev.currentTarget.clientWidth;
+    console.log('width> ' + width);
+
+    let height = ev.currentTarget.clientHeight;
+    console.log('height> ' + height);
+})

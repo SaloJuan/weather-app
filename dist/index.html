@@ -11,30 +11,40 @@
 
     <div class="main-container">
 
-        <!--buscador de ciudad?-->
+        <div class="location-finder">
+
+            <form class="city-form">
+                <input type="text" placeholder="Search for a city" class="city-search-bar">
+                <input type="submit" value="Find city" class="submit-city-btn">
+            </form>            
+            
+        </div>
 
         <div class="main-info">
             
             <div class="div-city-location">
-                <p>ciudad</p>
+                <p class="city-name">ciudad</p>
             </div>
             
             <div class="div-temperature-header">
-                <p>Temperatura</p>
+                <p class="city-temperature">Temperatura</p>
             </div>
 
             <div class="div-overall-fcast">
-                <p>estado cielo (parcialmente soleado, nublado, etc),</p>
+                <p class="city-day-sky">estado cielo dia (parcialmente soleado, nublado, etc),</p>
+                <p class="city-night-sky">estado cielo noche (parcialmente soleado, nublado, etc),</p>
             </div>
 
             <div class="div-min-max-temp">
-                <p>minima y maxima</p>
+                <p class="min-max-temp">minima y maxima</p>
             </div>
              
         </div>
         
         <div class="actual-day-forecast">
             forecast a lo largo del día
+            <p class="min-temperature-elemp">temperatura minima</p>
+            <p class="max-temperature-elemp">temperatura maxima</p>
         </div>
 
         <div class="ten-day-forecast">
