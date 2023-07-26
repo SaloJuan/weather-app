@@ -1,24 +1,15 @@
 import {selectedCityName} from "./apiCalls.js";
-import "./index.js";
-
-
-let cityName = document.querySelector('.city-name');
-let cityTemperature = document.querySelector('.city-temperature');
-let cityTemperatureMin = document.querySelector('.min-temperature-elemp');
-let cityTemperatureMax = document.querySelector('.max-temperature-elemp');
-
-
-
-
-
+import {renderFiveDayFcast} from "./renderFiveDayFcast.js";
+import {cityName, cityTemperature, skyStatusDay, skyStatusNight, cityTemperatureMax, cityTemperatureMin} from "./index.js";
 
 let ciudadNombre;
 let ciudadCieloDia, ciudadCieloNoche;
 let ciudadPrecipDia, ciudadPrecipNoche;
 let ciudadMinTemp, ciudadMaxTemp;
 
-async function renderTodayFcast (parsedResponse){    
-
+function renderTodayFcast (parsedResponse){      
+    
+    //capturando cada dato del json una variable
     ciudadMinTemp = parsedResponse.DailyForecasts[0].Temperature.Minimum.Value;
     ciudadMaxTemp = parsedResponse.DailyForecasts[0].Temperature.Maximum.Value;
 
@@ -26,28 +17,24 @@ async function renderTodayFcast (parsedResponse){
     ciudadCieloNoche = parsedResponse.DailyForecasts[0].Night.IconPhrase;
 
     ciudadPrecipDia = parsedResponse.DailyForecasts[0].Day.HasPrecipitation;
-    ciudadPrecipNoche = parsedResponse.DailyForecasts[0].Night.HasPrecipitation;
+    ciudadPrecipNoche = parsedResponse.DailyForecasts[0].Night.HasPrecipitation; 
 
-    //console.log(parsedResponse);
-                                    //obtenida del import
-    console.log(`Para la ciudad ${selectedCityName} el clima es --->>> Temp. Minima: ${ciudadMinTemp}, Temp. Maxima: ${ciudadMaxTemp}, cielo de dia: ${ciudadCieloDia}, cielo de noche: ${ciudadCieloNoche}, Dia lluvia?=${ciudadPrecipDia}, Noche lluvia?=${ciudadPrecipNoche}`)
+    //agregando los datos a los elementos html del actual forecast
+    cityName.textContent = selectedCityName;
 
-
-    cityTemperature.textContent = ciudadMaxTemp-2;
-
-
-    cityTemperatureMin.textContent = "Temperatura minima: " + ciudadMinTemp;
-    cityTemperatureMax.textContent = "Temperatura Maxima: " + ciudadMaxTemp;
-
-
-
-
-
+    cityTemperature.textContent =  `La temperatura actual es: ${Math.round(ciudadMaxTemp-2)}`;
     
+    
+    skyStatusDay.textContent = "Clima durante el día: " + ciudadCieloDia;
+    skyStatusNight.textContent = "Clima durante la noche: " + ciudadCieloNoche;
 
+    //agregando los datos a los elementos html del forecast a lo largo del dia
+
+    cityTemperatureMin.textContent = "Temperatura mínima: " + ciudadMinTemp;
+    cityTemperatureMax.textContent = "Temperatura máxima: " + ciudadMaxTemp;      
     
 }
 
 
 export {renderTodayFcast}
-export {ciudadNombre, ciudadCieloDia, ciudadCieloNoche, ciudadMinTemp, ciudadMaxTemp, ciudadPrecipDia, ciudadPrecipNoche};
+//export {ciudadNombre, ciudadCieloDia, ciudadCieloNoche, ciudadMinTemp, ciudadMaxTemp, ciudadPrecipDia, ciudadPrecipNoche};

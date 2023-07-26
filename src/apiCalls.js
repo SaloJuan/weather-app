@@ -1,14 +1,14 @@
 import "./index.js";
+import {renderFiveDayFcast} from "./renderFiveDayFcast.js";
 import {renderTodayFcast} from "./renderTodayFcast.js";
 
-let selectedCityData; 
 let selectedCityName;
 const personalApiKey = "LM3AuSR7bMoTFCDD9KE8ov0khihyXrUZ";   
 
-                                //llamada a la fn con la apiKey y la ciudad a buscar
-async function getCityKey(city){
+          //llamada a la fn con la apiKey y la ciudad a buscar
+async function getCityKey(cityName){
 
-    let response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${personalApiKey}&q=${city}`,{mode:"cors"})
+    let response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${personalApiKey}&q=${cityName}`,{mode:"cors"})
     
     let parsedResponseKey = await response.json();
    
@@ -27,15 +27,22 @@ async function getCityKey(city){
 }
 
 
-async function getForecast(locationKey){
+async function getForecast(cityLocationKey){
 
-    //esta va a consultar la forecastAPI
-    let response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${locationKey}?apikey=${personalApiKey}&metric=true`);
+    //esta va a consultar la forecastAPI 
+    //response1 contiene el forecast del DIA de la locacion elegida
+    let response1 = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${cityLocationKey}?apikey=${personalApiKey}&metric=true`);
 
     //acá ya tengo el json del forecast para la ciudad elegida. Hay que recorrerlo y recavar cada dato solicitado (temperatura, clima, etc)
-    let parsedResponse = await response.json();    
+    let parsedResponse1 = await response1.json();    
 
-    renderTodayFcast(parsedResponse);
+    //response2 trae el forecast para 5 dias
+    let response2 = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityLocationKey}?apikey=${personalApiKey}&metric=true`);
+
+    let parsedResponse2 = await response2.json();
+
+    renderTodayFcast(parsedResponse1);
+    renderFiveDayFcast(parsedResponse2);
 }
 
 
@@ -46,58 +53,182 @@ export {selectedCityName};
 export {getCityKey};
 export {getForecast};
 export {personalApiKey};
-export {selectedCityData};
 
  
 /*
+
 {
     "Headline": {
-        "EffectiveDate": "2023-07-24T20:00:00+01:00",
-        "EffectiveEpochDate": 1690225200,
-        "Severity": 5,
-        "Text": "Expect showers Monday evening",
-        "Category": "rain",
-        "EndDate": "2023-07-25T02:00:00+01:00",
-        "EndEpochDate": 1690246800,
-        "MobileLink": "http://www.accuweather.com/en/gb/london/ec4a-2/daily-weather-forecast/328328?unit=c&lang=en-us",
-        "Link": "http://www.accuweather.com/en/gb/london/ec4a-2/daily-weather-forecast/328328?unit=c&lang=en-us"
+        "EffectiveDate": "2023-07-26T19:00:00-03:00",
+        "EffectiveEpochDate": 1690408800,
+        "Severity": 7,
+        "Text": "Cool tonight",
+        "Category": "cold",
+        "EndDate": "2023-07-27T07:00:00-03:00",
+        "EndEpochDate": 1690452000,
+        "MobileLink": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?unit=c&lang=en-us",
+        "Link": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?unit=c&lang=en-us"
     },
     "DailyForecasts": [
         {
-            "Date": "2023-07-24T07:00:00+01:00",
-            "EpochDate": 1690178400,
+            "Date": "2023-07-26T07:00:00-03:00",
+            "EpochDate": 1690365600,
             "Temperature": {
                 "Minimum": {
-                    "Value": 11.7,
+                    "Value": 6.7,
                     "Unit": "C",
                     "UnitType": 17
                 },
                 "Maximum": {
-                    "Value": 17.2,
+                    "Value": 16.1,
                     "Unit": "C",
                     "UnitType": 17
                 }
             },
             "Day": {
-                "Icon": 12,
-                "IconPhrase": "Showers",
-                "HasPrecipitation": true,
-                "PrecipitationType": "Rain",
-                "PrecipitationIntensity": "Light"
+                "Icon": 14,
+                "IconPhrase": "Partly sunny w/ showers",
+                "HasPrecipitation": false
             },
             "Night": {
-                "Icon": 39,
-                "IconPhrase": "Partly cloudy w/ showers",
-                "HasPrecipitation": true,
-                "PrecipitationType": "Rain",
-                "PrecipitationIntensity": "Light"
+                "Icon": 36,
+                "IconPhrase": "Intermittent clouds",
+                "HasPrecipitation": false
             },
             "Sources": [
                 "AccuWeather"
             ],
-            "MobileLink": "http://www.accuweather.com/en/gb/london/ec4a-2/daily-weather-forecast/328328?day=1&unit=c&lang=en-us",
-            "Link": "http://www.accuweather.com/en/gb/london/ec4a-2/daily-weather-forecast/328328?day=1&unit=c&lang=en-us"
+            "MobileLink": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=1&unit=c&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=1&unit=c&lang=en-us"
+        },
+        {
+            "Date": "2023-07-27T07:00:00-03:00",
+            "EpochDate": 1690452000,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 8.6,
+                    "Unit": "C",
+                    "UnitType": 17
+                },
+                "Maximum": {
+                    "Value": 12,
+                    "Unit": "C",
+                    "UnitType": 17
+                }
+            },
+            "Day": {
+                "Icon": 6,
+                "IconPhrase": "Mostly cloudy",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 36,
+                "IconPhrase": "Intermittent clouds",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=2&unit=c&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=2&unit=c&lang=en-us"
+        },
+        {
+            "Date": "2023-07-28T07:00:00-03:00",
+            "EpochDate": 1690538400,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 9,
+                    "Unit": "C",
+                    "UnitType": 17
+                },
+                "Maximum": {
+                    "Value": 13.3,
+                    "Unit": "C",
+                    "UnitType": 17
+                }
+            },
+            "Day": {
+                "Icon": 3,
+                "IconPhrase": "Partly sunny",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 36,
+                "IconPhrase": "Intermittent clouds",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=3&unit=c&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=3&unit=c&lang=en-us"
+        },
+        {
+            "Date": "2023-07-29T07:00:00-03:00",
+            "EpochDate": 1690624800,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 11,
+                    "Unit": "C",
+                    "UnitType": 17
+                },
+                "Maximum": {
+                    "Value": 15.9,
+                    "Unit": "C",
+                    "UnitType": 17
+                }
+            },
+            "Day": {
+                "Icon": 4,
+                "IconPhrase": "Intermittent clouds",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 35,
+                "IconPhrase": "Partly cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=4&unit=c&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=4&unit=c&lang=en-us"
+        },
+        {
+            "Date": "2023-07-30T07:00:00-03:00",
+            "EpochDate": 1690711200,
+            "Temperature": {
+                "Minimum": {
+                    "Value": 12.2,
+                    "Unit": "C",
+                    "UnitType": 17
+                },
+                "Maximum": {
+                    "Value": 17.6,
+                    "Unit": "C",
+                    "UnitType": 17
+                }
+            },
+            "Day": {
+                "Icon": 4,
+                "IconPhrase": "Intermittent clouds",
+                "HasPrecipitation": false
+            },
+            "Night": {
+                "Icon": 35,
+                "IconPhrase": "Partly cloudy",
+                "HasPrecipitation": false
+            },
+            "Sources": [
+                "AccuWeather"
+            ],
+            "MobileLink": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=5&unit=c&lang=en-us",
+            "Link": "http://www.accuweather.com/en/ar/buenos-aires/7894/daily-weather-forecast/7894?day=5&unit=c&lang=en-us"
         }
     ]
-}*/
-// DailyForecasts[0].Temperature[0].Minimum.Value;
+}
+
+
+
+
+*/
