@@ -16,7 +16,7 @@ let cityTemperatureMax = document.querySelector('.max-temperature-elemp');
 
 //5 day fcast
 
-let efDays = document.querySelectorAll('.extended-fcast-day');
+let efDays = document.querySelectorAll('.extended-fcast');
 let efSkyDay = document.querySelectorAll('.extended-sky-day');
 let efSkyNight = document.querySelectorAll('.extended-sky-night');
 let efMinTemp = document.querySelectorAll('.extended-min-temp');

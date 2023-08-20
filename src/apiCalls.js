@@ -16,13 +16,10 @@ async function getCityKey(cityName){
 
 
         //con esta variable tengo el nombre de la ciudad, que se exporta y se usa en renderTodayFcast. No tiene otra funcion esto. Y esto es así porque en este punto, se tiene la info de la ciudad (locationKey, nombre, pais, etc). En el paso siguiente ya se trabaja sobre la informacion del fcast con la locationkey obtenida acá. sí, re larga la expliacción para algo que solo yo voy a leer y que probablemente no me vuelva a generar dudas, por lo que todo este comentario es al p2. Por qué sigo escribiendo? no sé.
-    selectedCityName = parsedResponseKey[0].AdministrativeArea.EnglishName;
-
-   
+    selectedCityName = parsedResponseKey[0].AdministrativeArea.EnglishName;   
 
     getForecast(cityLocationKey)
-
-    //return ?
+    
 
 }
 
@@ -34,12 +31,16 @@ async function getForecast(cityLocationKey){
     let response1 = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/${cityLocationKey}?apikey=${personalApiKey}&metric=true`);
 
     //acá ya tengo el json del forecast para la ciudad elegida. Hay que recorrerlo y recavar cada dato solicitado (temperatura, clima, etc)
-    let parsedResponse1 = await response1.json();    
+    let parsedResponse1 = await response1.json();   
 
     //response2 trae el forecast para 5 dias
     let response2 = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityLocationKey}?apikey=${personalApiKey}&metric=true`);
 
     let parsedResponse2 = await response2.json();
+
+    console.log("parsed2");
+    console.log(parsedResponse2);
+
 
     renderTodayFcast(parsedResponse1);
     renderFiveDayFcast(parsedResponse2);

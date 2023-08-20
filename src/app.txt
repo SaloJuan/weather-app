@@ -1,4 +1,4 @@
-Todo texo blanco en elementos transparentes sobre el fondo del cielo soleado o nublado o lluvioso
+Todo texto blanco en elementos transparentes sobre el fondo del cielo soleado o nublado o lluvioso
 
 1) main-info:
 -Al abrir la app te deberia solicitar tu locacion
@@ -12,15 +12,27 @@ Todo texo blanco en elementos transparentes sobre el fondo del cielo soleado o n
 - hacer una linea con 5 horarios posteriores al actual. ESto hacerlo con alguna fn onda new Date() que diga que hora es right now o ver si en la misma api te trae eso.
 -Esos 5 horarios deberian mosrtar el estado general previsto y la temperatura que se anuncia
 
-3)5-day-fcast:
--Para cada uno de los 5 dias posteriorres al de consulta,s e debe traer el clima general y la temperatura maxima y Minima
-necesito: variable del dia actual, 
-
-
 
 4)animaciones:
 otro modulo que se encargue de ver el fcast y de ahi cambiar el fondo y etc
  
+
+falta: 
+-alindar todo
+-animaciones
+-linea del 5 day forecast a lo largo del dia:
+
+ para cada dia mostrar:
+        -clima (parcialmente soleado, etc)
+        -maxima y minima
+        -nombre dia
+
+https://developer.accuweather.com/weather-icons
+
+
+
+
+
 
 
 
@@ -37,3 +49,49 @@ let divBarraBusqueda = document.querySelector('.location-finder');
     let height = ev.currentTarget.clientHeight;
     console.log('height> ' + height);
 })
+
+
+five day forecast pasado:
+
+
+
+            <div class="extended-fcast-one">
+                <h3 class="extended-fcast-day">Today</h3>
+                <p class="extended-sky-day">skyDay</p>
+                <p class="extended-sky-night">skynight</p>
+                <p class="extended-min-temp">minTemp</p>
+                <p class="extended-max-temp">maxTemp</p>
+            </div>
+
+            <div class="extended-fcast-two"> 
+                <h3 class="extended-fcast-day">Day2</h3>
+                <p class="extended-sky-day">skyDay</p>
+                <p class="extended-sky-night">skynight</p>
+                <p class="extended-min-temp">minTemp</p>
+                <p class="extended-max-temp">maxTemp</p>
+            </div>
+
+            <div class="extended-fcast-three"> 
+                <h3 class="extended-fcast-day">Day3</h3>
+                <p class="extended-sky-day">skyDay</p>
+                <p class="extended-sky-night">skynight</p>
+                <p class="extended-min-temp">minTemp</p>
+                <p class="extended-max-temp">maxTemp</p>
+            </div>
+
+            <div class="extended-fcast-four"> 
+                <h3 class="extended-fcast-day">Day4</h3>
+                <p class="extended-sky-day">skyDay</p>
+                <p class="extended-sky-night">skynight</p>
+                <p class="extended-min-temp">minTemp</p>
+                <p class="extended-max-temp">maxTemp</p>
+            </div>
+
+            <div class="extended-fcast-five"> 
+                <h3 class="extended-fcast-day">Day5</h3>
+                <p class="extended-sky-day">skyDay</p>
+                <p class="extended-sky-night">skynight</p>
+                <p class="extended-min-temp">minTemp</p>
+                <p class="extended-max-temp">maxTemp</p>
+            </div>
+            
